@@ -12,15 +12,27 @@
                 >
                     <Link :href="route('listing.index')">LaraZillow</Link>&nbsp;
                 </div>
-                <div>
+                <div v-if="user" class="flex items-center gap-4">
+                    <div class="text-sm text-gray-500">{{ user.name }}</div>
                     <Link :href="route('listing.create')" class="btn-primary"
                         >+ New Listing</Link
                     >
+                    <div>
+                        <Link method="delete" :href="route('logout')"
+                            >Logout</Link
+                        >
+                    </div>
+                </div>
+                <div v-else class="flex items-center gap-2">
+                    <Link :href="route('user-account.create')" as="button"
+                        >Register</Link
+                    >
+                    <Link :href="route('login')" as="button">Sign In</Link>
                 </div>
             </nav>
         </div>
     </header>
-    <main class="container mx-auto p-4">
+    <main class="container mx-auto p-4 w-full">
         <div
             v-if="flashSuccess"
             class="mb-4 border rounded-md shadow-sm border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900 p-2"
@@ -37,4 +49,5 @@ import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 
 const flashSuccess = computed(() => usePage().props.flash.success);
+const user = computed(() => usePage().props.user);
 </script>
