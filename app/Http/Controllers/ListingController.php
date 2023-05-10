@@ -17,9 +17,16 @@ class ListingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return inertia('Listing/Index', ['listings' => Listing::all()]);
+        $filters = $request->only(['priceFrom','priceTo', 'beds', 'baths', 'areaFrom', 'areaTo']);
+
+        return inertia('Listing/Index', [
+            'listings' => Listing::latest()
+                            ->filter($filters)
+                            ->paginate(9)
+                            ->withQueryString(),
+            'filters' => $filters]);
     }
 
     /**
