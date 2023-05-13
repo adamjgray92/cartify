@@ -92,7 +92,8 @@ const form = useForm({
     price: props.listing.price,
 });
 
-const submit = () => form.put(route("listing.update", props.listing.id));
+const submit = () =>
+    form.put(route("realtor.listing.update", props.listing.id));
 </script>
 
 <script>
@@ -102,13 +103,3 @@ export default {
     layout: MainLayout,
 };
 </script>
-
-<style scoped>
-label {
-    margin-right: 2em;
-}
-
-div {
-    padding: 2px;
-}
-</style>

@@ -86,7 +86,7 @@ const form = useForm({
     price: 0,
 });
 
-const submit = () => form.post(route("listing.store"));
+const submit = () => form.post(route("realtor.listing.store"));
 </script>
 
 <script>
@@ -96,13 +96,3 @@ export default {
     layout: MainLayout,
 };
 </script>
-
-<style scoped>
-label {
-    margin-right: 2em;
-}
-
-div {
-    padding: 2px;
-}
-</style>
