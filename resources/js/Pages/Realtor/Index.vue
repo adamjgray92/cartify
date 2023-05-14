@@ -20,49 +20,64 @@
                     </div>
                     <ListingAddress :listing="listing" class="text-gray-500" />
                 </div>
-                <div
-                    class="flex items-center gap-1 text-gray-600 dark:text-gray-300"
-                >
-                    <a
-                        :href="route('listing.show', { listing: listing.id })"
-                        target="_blank"
-                        class="btn-outline text-xs font-medium"
-                        >Preview</a
+                <section>
+                    <div
+                        class="flex items-center gap-1 text-gray-600 dark:text-gray-300"
                     >
-                    <Link
-                        :href="
-                            route('realtor.listing.edit', {
-                                listing: listing.id,
-                            })
-                        "
-                        class="btn-outline text-xs font-medium"
-                        >Edit</Link
-                    >
-                    <Link
-                        v-if="!listing.deleted_at"
-                        class="btn-outline text-xs font-medium"
-                        :href="
-                            route('realtor.listing.destroy', {
-                                listing: listing.id,
-                            })
-                        "
-                        as="button"
-                        method="delete"
-                        >Delete</Link
-                    >
-                    <Link
-                        v-else
-                        class="btn-outline text-xs font-medium"
-                        :href="
-                            route('realtor.listing.restore', {
-                                listing: listing.id,
-                            })
-                        "
-                        as="button"
-                        method="put"
-                        >Restore</Link
-                    >
-                </div>
+                        <a
+                            :href="
+                                route('listing.show', { listing: listing.id })
+                            "
+                            target="_blank"
+                            class="btn-outline text-xs font-medium"
+                            >Preview</a
+                        >
+                        <Link
+                            :href="
+                                route('realtor.listing.edit', {
+                                    listing: listing.id,
+                                })
+                            "
+                            class="btn-outline text-xs font-medium"
+                            >Edit</Link
+                        >
+                        <Link
+                            v-if="!listing.deleted_at"
+                            class="btn-outline text-xs font-medium"
+                            :href="
+                                route('realtor.listing.destroy', {
+                                    listing: listing.id,
+                                })
+                            "
+                            as="button"
+                            method="delete"
+                            >Delete</Link
+                        >
+                        <Link
+                            v-else
+                            class="btn-outline text-xs font-medium"
+                            :href="
+                                route('realtor.listing.restore', {
+                                    listing: listing.id,
+                                })
+                            "
+                            as="button"
+                            method="put"
+                            >Restore</Link
+                        >
+                    </div>
+                    <div class="mt-2">
+                        <Link
+                            class="block w-full btn-outline text-xs font-medium text-center"
+                            :href="
+                                route('realtor.listing.image.create', {
+                                    listing: listing.id,
+                                })
+                            "
+                            >Images ({{ listing.images_count }})</Link
+                        >
+                    </div>
+                </section>
             </div>
         </Box>
     </section>
