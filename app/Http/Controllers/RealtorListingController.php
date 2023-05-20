@@ -20,11 +20,16 @@ class RealtorListingController extends Controller
             ...$request->only(['by', 'order'])
         ];
 
-        $listings = Auth::user()->listings()->filter($filters)->withCount('images')->paginate(6)->withQueryString();
+        $listings = Auth::user()->listings()->filter($filters)->withCount('images')->withCount('offers')->paginate(6)->withQueryString();
 
         // dd($listings);
 
         return inertia('Realtor/Index', ['filters' => $filters, 'listings' => $listings]);
+    }
+
+    public function show(Listing $listing)
+    {
+        return inertia('Realtor/Show', ['listing' => $listing->load('offers', 'offers.bidder')]);
     }
 
         /**
