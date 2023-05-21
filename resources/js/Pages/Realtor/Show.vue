@@ -30,6 +30,7 @@
 </template>
 
 <script setup>
+import { computed } from "vue";
 import { Link } from "@inertiajs/vue3";
 import Box from "@/components/UI/Box.vue";
 import Price from "@/components/Price.vue";
@@ -46,7 +47,6 @@ const hasOffers = computed(() => props.listing.offers.length);
 
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
-import { computed } from "vue";
 
 export default {
     layout: MainLayout,
